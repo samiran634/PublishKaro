@@ -1,5 +1,5 @@
-/* ── Global styles ── */
-const globalStyles = `
+/* ── Global styles injected at runtime ── */
+export const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
@@ -22,7 +22,7 @@ const globalStyles = `
   .a-dot-t { animation:blink 2s ease-in-out infinite 0.5s; }
   .a-dot-o { animation:blink 2s ease-in-out infinite 1s; }
 
-  @keyframes cardIn { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes cardIn  { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
   @keyframes tCardIn { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
   @keyframes fadeUp  { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
 
@@ -53,21 +53,40 @@ const globalStyles = `
   .tracker-body::-webkit-scrollbar-thumb { background:rgba(14,165,233,0.2); border-radius:2px; }
 `;
 
+/* ── Types ── */
+export interface Paper {
+  title: string;
+  authors: string;
+  venue: string;
+  status: 'review' | 'accepted' | 'submit' | 'revision';
+  statusLabel: string;
+  progress: number;
+  icon: string;
+}
+
+export interface StatusConfig {
+  badgeBg: string;
+  badgeColor: string;
+  badgeBorder: string;
+  fillStart: string;
+  fillEnd: string;
+}
+
 /* ── Dummy paper data ── */
-const PAPERS = [
-  { title:"Neural Architectures for Low-Resource NLP Tasks",              authors:"Sharma et al.",  venue:"ACL 2025",         status:"review",   statusLabel:"Under Review",   progress:60,  icon:"📄" },
-  { title:"Quantum-Classical Hybrid Optimization in Drug Discovery",       authors:"Patel, Singh",   venue:"Nature Comp. Sci.",status:"accepted", statusLabel:"Accepted",        progress:100, icon:"🧬" },
-  { title:"Federated Learning with Differential Privacy Guarantees",       authors:"Kim et al.",     venue:"NeurIPS 2025",     status:"submit",   statusLabel:"Submitted",       progress:40,  icon:"🔐" },
-  { title:"Climate Modeling via Transformer-Based Spatiotemporal Networks",authors:"Gupta, Chen",    venue:"ICML 2025",        status:"revision", statusLabel:"Revision Req.",   progress:75,  icon:"🌍" },
-  { title:"Robustness of Vision-Language Models Under Distribution Shift", authors:"Mehta et al.",   venue:"CVPR 2025",        status:"review",   statusLabel:"Under Review",   progress:55,  icon:"👁️" },
-  { title:"Explainable AI for Clinical Decision Support Systems",          authors:"Rao, Williams",  venue:"Lancet Digital",   status:"submit",   statusLabel:"Submitted",       progress:30,  icon:"🏥" },
-  { title:"Graph Neural Networks for Protein Interaction Prediction",      authors:"Zhao et al.",    venue:"Bioinformatics",   status:"accepted", statusLabel:"Accepted",        progress:100, icon:"🔬" },
-  { title:"Self-Supervised Contrastive Learning for Satellite Imagery",    authors:"Nair, López",    venue:"IGARSS 2025",      status:"review",   statusLabel:"Under Review",   progress:65,  icon:"🛰️" },
+export const PAPERS: Paper[] = [
+  { title: "Neural Architectures for Low-Resource NLP Tasks", authors: "Sharma et al.", venue: "ACL 2025", status: "review", statusLabel: "Under Review", progress: 60, icon: "📄" },
+  { title: "Quantum-Classical Hybrid Optimization in Drug Discovery", authors: "Patel, Singh", venue: "Nature Comp. Sci.", status: "accepted", statusLabel: "Accepted", progress: 100, icon: "🧬" },
+  { title: "Federated Learning with Differential Privacy Guarantees", authors: "Kim et al.", venue: "NeurIPS 2025", status: "submit", statusLabel: "Submitted", progress: 40, icon: "🔐" },
+  { title: "Climate Modeling via Transformer-Based Spatiotemporal Networks", authors: "Gupta, Chen", venue: "ICML 2025", status: "revision", statusLabel: "Revision Req.", progress: 75, icon: "🌍" },
+  { title: "Robustness of Vision-Language Models Under Distribution Shift", authors: "Mehta et al.", venue: "CVPR 2025", status: "review", statusLabel: "Under Review", progress: 55, icon: "👁️" },
+  { title: "Explainable AI for Clinical Decision Support Systems", authors: "Rao, Williams", venue: "Lancet Digital", status: "submit", statusLabel: "Submitted", progress: 30, icon: "🏥" },
+  { title: "Graph Neural Networks for Protein Interaction Prediction", authors: "Zhao et al.", venue: "Bioinformatics", status: "accepted", statusLabel: "Accepted", progress: 100, icon: "🔬" },
+  { title: "Self-Supervised Contrastive Learning for Satellite Imagery", authors: "Nair, López", venue: "IGARSS 2025", status: "review", statusLabel: "Under Review", progress: 65, icon: "🛰️" },
 ];
 
-const STATUS_CONFIG = {
-  review:   { badgeBg:"rgba(245,158,11,0.12)",  badgeColor:"#fcd34d", badgeBorder:"rgba(245,158,11,0.22)",  fillStart:"#f59e0b", fillEnd:"#fbbf24" },
-  accepted: { badgeBg:"rgba(74,222,128,0.1)",   badgeColor:"#86efac", badgeBorder:"rgba(74,222,128,0.2)",   fillStart:"#4ade80", fillEnd:"#86efac" },
-  submit:   { badgeBg:"rgba(14,165,233,0.1)",   badgeColor:"#7dd3fc", badgeBorder:"rgba(14,165,233,0.2)",   fillStart:"#0ea5e9", fillEnd:"#38bdf8" },
-  revision: { badgeBg:"rgba(248,113,113,0.1)",  badgeColor:"#fca5a5", badgeBorder:"rgba(248,113,113,0.2)",  fillStart:"#f87171", fillEnd:"#fca5a5" },
+export const STATUS_CONFIG: Record<string, StatusConfig> = {
+  review: { badgeBg: "rgba(245,158,11,0.12)", badgeColor: "#fcd34d", badgeBorder: "rgba(245,158,11,0.22)", fillStart: "#f59e0b", fillEnd: "#fbbf24" },
+  accepted: { badgeBg: "rgba(74,222,128,0.1)", badgeColor: "#86efac", badgeBorder: "rgba(74,222,128,0.2)", fillStart: "#4ade80", fillEnd: "#86efac" },
+  submit: { badgeBg: "rgba(14,165,233,0.1)", badgeColor: "#7dd3fc", badgeBorder: "rgba(14,165,233,0.2)", fillStart: "#0ea5e9", fillEnd: "#38bdf8" },
+  revision: { badgeBg: "rgba(248,113,113,0.1)", badgeColor: "#fca5a5", badgeBorder: "rgba(248,113,113,0.2)", fillStart: "#f87171", fillEnd: "#fca5a5" },
 };

@@ -8,7 +8,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
-import { DashboardPage } from './pages/DashboardPage';
+import { DashboardPage } from './pages/DashboardPage.tsx';
 
 function Starfield() {
   useEffect(() => {
@@ -27,6 +27,29 @@ function Starfield() {
     <>
       <div className="grid-bg" />
       <div className="starfield" id="sf" />
+      {/* Ambient teal glow — matches dashboard */}
+      <div style={{
+        position: 'fixed',
+        top: '30%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 800,
+        height: 500,
+        background: 'radial-gradient(ellipse, rgba(14,165,233,0.06) 0%, transparent 70%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
+      {/* Secondary gold glow (bottom-right) */}
+      <div style={{
+        position: 'fixed',
+        bottom: '-10%',
+        right: '-5%',
+        width: 500,
+        height: 400,
+        background: 'radial-gradient(ellipse, rgba(245,158,11,0.05) 0%, transparent 70%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
     </>
   );
 }
@@ -35,22 +58,45 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        {/* Starfield background for all non-dashboard pages */}
         <Starfield />
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardPage />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </Layout>
+        <Routes>
+          {/* Dashboard is full-viewport — it renders its own nav and background */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Shared Layout wraps the public / auth pages */}
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <LoginPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Layout>
+                <SignupPage />
+              </Layout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </AuthProvider>
   );

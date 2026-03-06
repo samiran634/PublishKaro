@@ -1,8 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { Button } from '../components/Button';
-import { Input } from '../components/Input';
 import axios from 'axios';
 
 export function LoginPage() {
@@ -13,6 +11,7 @@ export function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [keepSignedIn, setKeepSignedIn] = useState(false);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -36,77 +35,110 @@ export function LoginPage() {
     };
 
     return (
-        <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-4 py-12">
-            <div className="w-full max-w-md">
-                {/* Card */}
-                <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl p-8 shadow-2xl shadow-black/10">
-                    {/* Header */}
-                    <div className="text-center mb-8">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[var(--accent-primary)]/25">
-                            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                            </svg>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 60px)', padding: '1rem' }}>
+            <div className="auth-card page-enter">
+
+                {/* ── Left Info Panel ── */}
+                <div className="info-panel">
+                    <div className="panel-content">
+                        <div className="logo-row">
+                            <div className="logo-box"><span className="logo-letter">S</span></div>
+                            <div>
+                                <div className="brand-name">ScholarFlow</div>
+                                <div className="brand-sub">Autonomous Publishing</div>
+                            </div>
                         </div>
-                        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Welcome Back</h1>
-                        <p className="text-[var(--text-secondary)] mt-1">Sign in to your account</p>
-                    </div>
 
-                    {/* Error Alert */}
-                    {error && (
-                        <div className="mb-6 p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2">
-                            <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                            </svg>
-                            {error}
-                        </div>
-                    )}
+                        <h2 className="panel-title">
+                            Publish research<br />with <span className="hl">AI agents</span>,<br />not paperwork.
+                        </h2>
 
-                    {/* Form */}
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        <Input
-                            label="Email Address"
-                            type="email"
-                            placeholder="you@example.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            icon={
-                                <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                            }
-                        />
-
-                        <Input
-                            label="Password"
-                            type="password"
-                            placeholder="••••••••"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            minLength={6}
-                            icon={
-                                <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
-                            }
-                        />
-
-                        <Button type="submit" isLoading={isLoading} className="w-full" size="lg">
-                            Sign In
-                        </Button>
-                    </form>
-
-                    {/* Divider */}
-                    <div className="mt-8 pt-6 border-t border-[var(--border-primary)] text-center">
-                        <p className="text-sm text-[var(--text-secondary)]">
-                            Don't have an account?{' '}
-                            <Link to="/signup" className="text-[var(--accent-primary)] font-semibold hover:underline">
-                                Create one
-                            </Link>
+                        <p className="panel-desc">
+                            ScholarFlow deploys intelligent agents that format, submit, and track your papers across journals — automatically.
                         </p>
+
+                        <div className="pipeline">
+                            <div className="pipe-node"><span className="pipe-num">①</span> Paper Ingestion Agent</div>
+                            <div className="pipe-arrow" />
+                            <div className="pipe-node"><span className="pipe-num">②</span> Format &amp; Compliance Agent</div>
+                            <div className="pipe-arrow" />
+                            <div className="pipe-node"><span className="pipe-num">③</span> Multi-Journal Submission</div>
+                        </div>
+
+                        <div className="feat-list">
+                            <div className="feat-item"><span className="feat-dot" />IEEE, Springer, Elsevier &amp; 40+ venues</div>
+                            <div className="feat-item"><span className="feat-dot" />Real-time submission tracking</div>
+                            <div className="feat-item"><span className="feat-dot" />Automated revision handling</div>
+                        </div>
                     </div>
                 </div>
+
+                {/* ── Right Form Panel ── */}
+                <div className="form-panel">
+                    <div className="status-badge"><span className="status-dot" />AGENTS ONLINE</div>
+
+                    <div className="form-eyebrow">// researcher access</div>
+                    <h1 className="form-title">Welcome back</h1>
+                    <p className="form-sub">Sign in to manage your publication pipeline.</p>
+
+                    {error && <div className="toast toast-error">{error}</div>}
+
+                    <form onSubmit={handleSubmit} style={{ marginTop: error ? '1rem' : 0 }}>
+                        <div className="field" style={{ marginTop: error ? '0' : '0' }}>
+                            <label className="field-label" htmlFor="l-uid">User ID / Email</label>
+                            <input
+                                className="field-input"
+                                id="l-uid"
+                                type="text"
+                                placeholder="researcher_id"
+                                autoComplete="username"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className="field">
+                            <label className="field-label" htmlFor="l-pwd">Password</label>
+                            <input
+                                className="field-input"
+                                id="l-pwd"
+                                type="password"
+                                placeholder="••••••••••"
+                                autoComplete="current-password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className="row-extras">
+                            <label className="check-label">
+                                <input
+                                    type="checkbox"
+                                    checked={keepSignedIn}
+                                    onChange={(e) => setKeepSignedIn(e.target.checked)}
+                                />
+                                Keep me signed in
+                            </label>
+                            <button type="button" className="forgot">forgot password?</button>
+                        </div>
+
+                        <button type="submit" className="btn-submit" disabled={isLoading}>
+                            {isLoading ? 'Authenticating…' : 'Sign In \u00a0→'}
+                        </button>
+                    </form>
+
+                    <div className="divider-row">or</div>
+
+                    <p className="switch-row">
+                        New researcher?&nbsp;
+                        <button className="switch-btn" onClick={() => navigate('/signup')}>
+                            Create your account →
+                        </button>
+                    </p>
+                </div>
+
             </div>
         </div>
     );

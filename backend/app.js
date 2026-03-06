@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -31,6 +32,9 @@ app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   credentials: true
 }));
+
+// Cookie parser
+app.use(cookieParser());
 
 // Rate limiting - applies to all routes
 const limiter = rateLimit({
@@ -71,7 +75,7 @@ app.get('/api/health', (req, res) => {
 if (process.env.NODE_ENV === 'production') {
   const frontendPath = path.join(__dirname, '../frontend/dist');
   app.use(express.static(frontendPath));
-  
+
   // Serve index.html for all non-API routes (SPA support)
   app.get('*', (req, res, next) => {
     // Skip API routes and auth routes

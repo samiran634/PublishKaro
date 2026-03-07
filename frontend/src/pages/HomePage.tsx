@@ -23,7 +23,7 @@ export function HomePage() {
                 </h1>
 
                 <p className="hero-sub">
-                    PublishKaro deploys intelligent agents that format, submit, and track your papers across journals — automatically.
+                    Streamline your publication process , PublishKaro handles takes care of the formatting, submission & tracking of your research papers so you don't have to.
                 </p>
 
                 <div className="hero-cta">
@@ -70,7 +70,7 @@ export function HomePage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
                             ),
-                            title: 'Secure &amp; Private',
+                            title: 'Secure & Private',
                             desc: 'Your research stays safe with JWT authentication, encrypted storage, and S3 document handling.',
                         },
                     ].map((f, i) => (

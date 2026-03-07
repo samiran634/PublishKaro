@@ -58,15 +58,15 @@ export function LoginPage() {
                             </h2>
 
                             <p className="panel-desc">
-                                PublishKaro deploys intelligent agents that format, submit, and track your papers across journals — automatically.
+                                Streamline your publication process , PublishKaro handles takes care of the formatting, submission & tracking of your research papers so you don't have to.
                             </p>
 
                             <div className="pipeline">
-                                <div className="pipe-node"><span className="pipe-num">①</span> Submitter Agent</div>
+                                <div className="pipe-node"><span className="pipe-num">①</span> Smart Manuscript Intake</div>
                                 <div className="pipe-arrow" />
-                                <div className="pipe-node"><span className="pipe-num">②</span> Format &amp; Compliance Agent</div>
+                                <div className="pipe-node"><span className="pipe-num">②</span> Auto-formatting & Guideline check </div>
                                 <div className="pipe-arrow" />
-                                <div className="pipe-node"><span className="pipe-num">③</span> Multi-Journal Submission</div>
+                                <div className="pipe-node"><span className="pipe-num">③</span> Seamless Journal Delivery </div>
                             </div>
 
                             <div className="feat-list">

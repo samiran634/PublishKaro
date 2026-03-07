@@ -75,8 +75,6 @@ export function SignupPage() {
                                 <div className="feat-item"><span className="feat-dot" />Get notified on acceptance &amp; review</div>
                                 <div className="feat-item"><span className="feat-dot" />Automated revision tracking</div>
                             </div>
-
-                            <div className="beta-banner">★ FREE during beta — full access to all agents</div>
                         </div>
                     </div>
 

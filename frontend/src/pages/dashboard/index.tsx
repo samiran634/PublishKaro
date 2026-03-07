@@ -46,7 +46,7 @@ export function DashboardPage() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 0 14px rgba(14,165,233,0.22), inset 0 0 8px rgba(14,165,233,0.07)'
             }}>
-              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', fontWeight: 900, color: 'var(--teal)' }}>S</span>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', fontWeight: 900, color: 'var(--teal)' }}>PK</span>
             </div>
             <div>
               <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontWeight: 600, color: '#e2e8f0' }}>PublishKaro</div>

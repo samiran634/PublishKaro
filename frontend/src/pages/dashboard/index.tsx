@@ -49,7 +49,7 @@ export function DashboardPage() {
               <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', fontWeight: 900, color: 'var(--teal)' }}>S</span>
             </div>
             <div>
-              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontWeight: 600, color: '#e2e8f0' }}>ScholarFlow</div>
+              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontWeight: 600, color: '#e2e8f0' }}>PublishKaro</div>
               <div style={{ fontSize: '0.6rem', color: 'var(--muted)', letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'JetBrains Mono',monospace" }}>Autonomous Publishing</div>
             </div>
           </div>

@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 
 // Import routes
 import simpleAuthRoutes from './routes/simpleAuth.js';
+import documentRoutes from './routes/documents.js';
 
 
 // Import middleware
@@ -59,6 +60,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/research-
 // Routes
 // Authentication routes (no /api prefix for frontend compatibility)
 app.use('/api/signing', simpleAuthRoutes);
+app.use('/api', documentRoutes);
 
 
 // Health check endpoint

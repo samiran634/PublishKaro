@@ -1,8 +1,11 @@
 import type { Paper } from './essential';
 import { STATUS_CONFIG } from './essential';
 import { Badge } from './badge';
+import { ContributorChip } from './contributorChip';
 
-export function TrackerCard({ paper, delay }: { paper: Paper; delay: number }) {
+interface Author { name: string; email?: string; affiliation?: string; }
+
+export function TrackerCard({ paper, delay, authors }: { paper: Paper; delay: number; authors?: Author[] }) {
   const sc = STATUS_CONFIG[paper.status];
   return (
     <div className="tracker-card" style={{
@@ -15,7 +18,17 @@ export function TrackerCard({ paper, delay }: { paper: Paper; delay: number }) {
         <Badge paper={paper} />
       </div>
       <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.9rem', fontWeight: 700, color: '#f1f5f9', marginBottom: '0.2rem', lineHeight: 1.3 }}>{paper.title}</div>
-      <div style={{ fontSize: '0.72rem', color: 'var(--muted)', marginBottom: '0.65rem' }}>{paper.authors}</div>
+
+      {/* Contributors: real authors if provided, else fallback string */}
+      {authors && authors.length > 0 ? (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginBottom: '0.65rem' }}>
+          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#475569', alignSelf: 'center', marginRight: '0.1rem' }}>Contributors</span>
+          {authors.map((a, i) => <ContributorChip key={i} name={a.name} affiliation={a.affiliation} />)}
+        </div>
+      ) : (
+        <div style={{ fontSize: '0.72rem', color: 'var(--muted)', marginBottom: '0.65rem' }}>{paper.authors}</div>
+      )}
+
       {/* Progress bar */}
       <div style={{ marginBottom: '0.7rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: "'JetBrains Mono',monospace", fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.35rem' }}>

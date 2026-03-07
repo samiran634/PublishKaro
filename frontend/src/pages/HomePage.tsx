@@ -19,7 +19,7 @@ export function HomePage() {
             </h1>
 
             <p className="hero-sub">
-                ScholarFlow deploys intelligent agents that format, submit, and track your papers across journals — automatically.
+                PublishKaro deploys intelligent agents that format, submit, and track your papers across journals — automatically.
             </p>
 
             <div className="hero-cta">

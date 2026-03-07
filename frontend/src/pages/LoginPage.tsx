@@ -42,9 +42,9 @@ export function LoginPage() {
                 <div className="info-panel">
                     <div className="panel-content">
                         <div className="logo-row">
-                            <div className="logo-box"><span className="logo-letter">S</span></div>
+                            <div className="logo-box"><span className="logo-letter">PK</span></div>
                             <div>
-                                <div className="brand-name">ScholarFlow</div>
+                                <div className="brand-name">PublishKaro</div>
                                 <div className="brand-sub">Autonomous Publishing</div>
                             </div>
                         </div>
@@ -54,11 +54,11 @@ export function LoginPage() {
                         </h2>
 
                         <p className="panel-desc">
-                            ScholarFlow deploys intelligent agents that format, submit, and track your papers across journals — automatically.
+                            PublishKaro deploys intelligent agents that format, submit, and track your papers across journals — automatically.
                         </p>
 
                         <div className="pipeline">
-                            <div className="pipe-node"><span className="pipe-num">①</span> Paper Ingestion Agent</div>
+                            <div className="pipe-node"><span className="pipe-num">①</span> Submitter Agent</div>
                             <div className="pipe-arrow" />
                             <div className="pipe-node"><span className="pipe-num">②</span> Format &amp; Compliance Agent</div>
                             <div className="pipe-arrow" />

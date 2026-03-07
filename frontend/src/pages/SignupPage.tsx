@@ -49,9 +49,9 @@ export function SignupPage() {
                 <div className="info-panel">
                     <div className="panel-content">
                         <div className="logo-row">
-                            <div className="logo-box"><span className="logo-letter">S</span></div>
+                            <div className="logo-box"><span className="logo-letter">PK</span></div>
                             <div>
-                                <div className="brand-name">ScholarFlow</div>
+                                <div className="brand-name">PublishKaro</div>
                                 <div className="brand-sub">Autonomous Publishing</div>
                             </div>
                         </div>

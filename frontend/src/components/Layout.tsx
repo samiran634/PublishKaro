@@ -17,10 +17,10 @@ export function Layout({ children }: { children: ReactNode }) {
             <nav className="sf-nav">
                 <Link to="/" className="nav-logo" style={{ textDecoration: 'none' }}>
                     <div className="logo-box">
-                        <span className="logo-letter">S</span>
+                        <span className="logo-letter">PK</span>
                     </div>
                     <div>
-                        <div className="brand-name">ScholarFlow</div>
+                        <div className="brand-name">PublishKaro</div>
                         <div className="brand-sub">Autonomous Publishing</div>
                     </div>
                 </Link>
